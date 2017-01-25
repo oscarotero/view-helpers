@@ -61,7 +61,7 @@ class Html
      * @param array $sources ['media' => 'srcset']
      * @param string|null $alt
      */
-    public static function picture($src, array $sources = [], $alt = null)
+    public static function picture($src, array $sources = [], $alt = null, array $attrs = null)
     {
         $html = '';
 
@@ -71,6 +71,6 @@ class Html
 
         $html .= self::element('img', ['srcset' => $src, 'alt' => $alt]);
 
-        return "<picture>{$html}</picture>";
+        return self::element('picture', $attrs).$html.'</picture>';
     }
 }
