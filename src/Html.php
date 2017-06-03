@@ -59,9 +59,10 @@ class Html
      *
      * @param string $src
      * @param array $sources ['media' => 'srcset']
-     * @param string|null $alt
+     * @param string|array|null $imgAttrs Extra atributes added to <img> element. If it's a string, it will be used as "alt"
+     * @param array|null $pictureAttrs Extra attributes added to <picture> element
      */
-    public static function picture($src, array $sources = [], $alt = null, array $attrs = null)
+    public static function picture($src, array $sources = [], $imgAttrs = null, array $pictureAttrs = null)
     {
         $html = '';
 
@@ -69,8 +70,14 @@ class Html
             $html .= self::element('source', ['srcset' => $srcset, 'media' => $media]);
         }
 
-        $html .= self::element('img', ['srcset' => $src, 'alt' => $alt]);
+        if (!is_array($imgAttrs)) {
+            $imgAttrs = ['alt' => $imgAttrs];
+        }
 
-        return self::element('picture', $attrs).$html.'</picture>';
+        $imgAttrs['srcset'] = $src;
+
+        $html .= self::element('img', $imgAttrs);
+
+        return self::element('picture', $pictureAttrs).$html.'</picture>';
     }
 }
