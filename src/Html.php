@@ -12,7 +12,7 @@ class Html
      *
      * @return string
      */
-    public static function element($name, array $attrs = null)
+    public static function element($name, array $attrs = null): string
     {
         $str = "<{$name}";
 
@@ -62,7 +62,7 @@ class Html
      *                                    If it's a string, it will be used as "alt"
      * @param array|null $pictureAttrs Extra attributes added to <picture> element
      */
-    public static function picture(array $sources = [], $imgAttrs = null, array $pictureAttrs = null)
+    public static function picture(array $sources = [], $imgAttrs = null, array $pictureAttrs = null): string
     {
         $html = '';
         $src = $sources[0];
