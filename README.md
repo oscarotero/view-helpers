@@ -26,10 +26,14 @@ Functions to generate html
 $element = ViewHelpers\Html::element('div', [
     'id' => 'my-id',
     'class' => ['class1, class2'],
+    'style' => [
+        'font-size' => '2em',
+        'color' => 'blue'
+    ],
     'hidden' => true
 ]);
 
-echo $element; // <div id="my-id" class="class1 class2" hidden>
+echo $element; // <div id="my-id" class="class1 class2" style="font-size: 2em; color: blue" hidden>
 ```
 
 ### picture

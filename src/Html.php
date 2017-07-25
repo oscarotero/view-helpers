@@ -28,6 +28,10 @@ class Html
                 }
 
                 if (is_array($value)) {
+                    $value = array_filter($value, function ($val) {
+                        return strlen($val) > 0;
+                    });
+
                     switch ($name) {
                         case 'srcset':
                             $value = array_map(
@@ -38,6 +42,17 @@ class Html
                                 array_keys($value)
                             );
                             $value = implode(', ', $value);
+                            break;
+
+                        case 'style':
+                            $value = array_map(
+                                function ($value, $name) {
+                                    return "$name: $value";
+                                },
+                                array_values($value),
+                                array_keys($value)
+                            );
+                            $value = implode('; ', $value);
                             break;
 
                         default:
