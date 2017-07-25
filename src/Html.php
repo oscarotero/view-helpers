@@ -32,6 +32,10 @@ class Html
                         return strlen($val) > 0;
                     });
 
+                    if (empty($value)) {
+                        continue;
+                    }
+
                     switch ($name) {
                         case 'srcset':
                             $value = array_map(

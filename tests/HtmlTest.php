@@ -47,4 +47,17 @@ class HtmlTest extends TestCase
             ]])
         );
     }
+
+    public function testEmtpyAttr()
+    {
+        $this->assertSame(
+            '<div>',
+            Html::element('div', [
+                'style' => [
+                    'background-color' => '',
+                ],
+                'class' => []
+            ])
+        );
+    }
 }
